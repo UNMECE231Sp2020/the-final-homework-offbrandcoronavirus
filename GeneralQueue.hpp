@@ -10,44 +10,91 @@ class Queue {
 		size_t _size;
 	public:
 		//Default constructor
-		Queue();
+		Queue() {
+				_size = 0;
+				_values = nullptr;
+		}
 
 		//Copy constructor
-		Queue(const Queue &q);
+		Queue(const Queue &q) {
+				if(q.size() == 0) {
+						_size = 0;
+						_values = nullptr;
+				}
+				else {
+					int q_size = q.size();
+					Data *q_values_copy = new Data[q_size];
+					int i;
+					for(i=0; i<q_size; i++) {
+							*(q_values_copy+i) = *(q._values+i);
+					}
+					
+					if(q_size == 1) {
+							_values = new Data(*q_values_copy);
+					}
+					else {
+						_values = new Data[q_size];
+						for(i=0; i<q_size; i++) {
+								*(_values+i) = *(q_values_copy+i);
+						}
+					}
+						_size = q_size;
+						delete [] q_values_copy;
+				}
+		}
 
 		//Getters
-		size_t size() const;
+		size_t size() const {
+			return _size;	
+		}
 
-		Q front() const;
+		Q front() const {
+			return *_data;
+		}
 
-		Q back() const;
+		Q back() const {
+			return *(_data + size() - 1);
+		}
 
 		//Push to queue
-		void enqueue(Q value);
+		void enqueue(Q value) {
+				_data.push_front(value);
+		}
 
 		//Pop from queue
-		void dequeue();
+		void dequeue() {
+				pop_back();
+		}
 
-		void print();
+		void print() {
+			std::cout << *this << std::endl;
+		}
 
-		bool search(Q value);
+		bool search(Q value) {
+				return _data.search(value);
+		}
 
-		bool empty();
+		bool empty() const {
+			if(empty())
+				return true;
+			else
+				return false;
+		}
 
 		Queue<Q> operator=(const Queue<Q> q) {
 			_data = q._data;
 			_size = _data.size();
 		}
 
-		template <class U>
+		template <class Q>
 		friend std::ostream &operator<<(std::ostream &out, 
-				const Queue<U> &q);
+				const Queue<Q> &q);
 
-		template <class U>
-		friend bool operator==(const Queue<U> &left_queue, 
-				const Queue<U> &right_queue);
+		template <class Q>
+		friend bool operator==(const Queue<Q> &left_queue, 
+				const Queue<Q> &right_queue);
 
-		template <class U>
-		friend bool operator!=(const Queue<U> &left_queue, 
-				const Queue<U> &right_queue);
+		template <class Q>
+		friend bool operator!=(const Queue<Q> &left_queue, 
+				const Queue<Q> &right_queue);
 };
