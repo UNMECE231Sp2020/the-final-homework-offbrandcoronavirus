@@ -12,30 +12,30 @@ class Queue {
 		//Default constructor
 		Queue() {
 				_size = 0;
-				_values = nullptr;
+				_data = nullptr;
 		}
 
 		//Copy constructor
-		Queue(const List &q){
+		Queue(const List<Q> &q){
 				if(q.size() == 0) {
 						_size = 0;
-						_values = nullptr;
+						_data = nullptr;
 				}
 				else {
 					int q_size = q.size();
-					Data *q_values_copy = new Data[q_size];
+					List<Q> *q_values_copy = new List<Q>[q_size];
 					int i;
 					for(i=0; i<q_size; i++) {
-							*(q_values_copy+i) = *(q._values+i);
+							*(q_values_copy+i) = *(q._data+i);
 					}
 					
 					if(q_size == 1) {
-							_values = new Data(*q_values_copy);
+							_data = new List<Q>(*q_values_copy);
 					}
 					else {
-						_values = new Data[q_size];
+						_data = new List<Q>[q_size];
 						for(i=0; i<q_size; i++) {
-								*(_values+i) = *(q_values_copy+i);
+								*(_data+i) = *(q_values_copy+i);
 						}
 					}
 						_size = q_size;
@@ -86,15 +86,15 @@ class Queue {
 			_size = _data.size();
 		}
 
-		template <class Q>
+		template <class U>
 		friend std::ostream &operator<<(std::ostream &out, 
-				const Queue<Q> &q);
+				const Queue<U> &q);
 
-		template <class Q>
-		friend bool operator==(const Queue<Q> &left_queue, 
+		template <class U>
+		friend bool operator==(const Queue<U> &left_queue, 
 				const Queue<Q> &right_queue);
 
-		template <class Q>
-		friend bool operator!=(const Queue<Q> &left_queue, 
+		template <class U>
+		friend bool operator!=(const Queue<U> &left_queue, 
 				const Queue<Q> &right_queue);
 };
