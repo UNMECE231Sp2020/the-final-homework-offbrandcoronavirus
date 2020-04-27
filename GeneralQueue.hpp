@@ -1,7 +1,7 @@
 #include <iostream>
 //Do not include GeneralList.hpp because 
 //	GeneralStack.hpp already includes it
-/*#include "GeneralList.hpp"*/
+#include "GeneralList.hpp"
 
 template <class Q>
 class Queue {
@@ -16,7 +16,7 @@ class Queue {
 		}
 
 		//Copy constructor
-		Queue(const Queue &q) {
+		Queue(const List &q){
 				if(q.size() == 0) {
 						_size = 0;
 						_values = nullptr;
@@ -63,7 +63,7 @@ class Queue {
 
 		//Pop from queue
 		void dequeue() {
-				pop_back();
+				_data.pop_back();
 		}
 
 		void print() {

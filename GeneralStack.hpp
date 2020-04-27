@@ -34,7 +34,7 @@ class Stack {
 		}
 		//Removing data from the data structure
 		void pop() {
-			pop_back();
+			_data.pop_back();
 		}
 
 		bool search(T value) {
@@ -56,7 +56,7 @@ class Stack {
 		//This overloaded operator is empty, please implement
 		Stack<T> operator=(const Stack<T> &stack) {
 			stack._data=_data;
-			_size=data._size();
+			_size=_data._size();
 			return *this;
 		}
 
