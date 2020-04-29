@@ -21,7 +21,7 @@ class Stack {
 
 		//Getters
 		T top() const {
-			return *(_data + size() - 1);
+			return _data.front;	
 		}
 
 		size_t size() const {
@@ -74,7 +74,7 @@ std::ostream &operator<<(std::ostream &out, const Stack<S> &stack) {
 	out << stack._data;
 	return out;
 }
-
+/*
 template <class S>
 bool operator==(const Stack<S> &left_side, const Stack<S> &right_side) {
 	if(left_side.size() != right_side.size() ) {
@@ -91,3 +91,4 @@ template <class S>
 bool operator!=(const Stack<S> &left_side, const Stack<S> &right_side) { 
 	return !(left_side==right_side);
 }
+*/

@@ -1,8 +1,6 @@
 #include <iostream>
 //Do not include GeneralList.hpp because 
 //	GeneralStack.hpp already includes it
-#include "GeneralList.hpp"
-
 template <class Q>
 class Queue {
 	private:
@@ -59,6 +57,7 @@ class Queue {
 		//Push to queue
 		void enqueue(Q value) {
 				_data.push_front(value);
+				_size = _data._size();
 		}
 
 		//Pop from queue
@@ -84,6 +83,7 @@ class Queue {
 		Queue<Q> operator=(const Queue<Q> q) {
 			_data = q._data;
 			_size = _data.size();
+			return *this;
 		}
 
 		template <class U>
@@ -92,9 +92,28 @@ class Queue {
 
 		template <class U>
 		friend bool operator==(const Queue<U> &left_queue, 
-				const Queue<Q> &right_queue);
+				const Queue<U> &right_queue);
 
 		template <class U>
 		friend bool operator!=(const Queue<U> &left_queue, 
-				const Queue<Q> &right_queue);
+				const Queue<U> &right_queue);
 };
+/*
+template <class U>
+std::ostream &operator<<(std::ostream &out, const Queue<U> &q) {
+	out << queue._data;
+	return out;
+}
+template <class U>		
+bool operator==(const Queue<U> &left_queue, const Queue<U> &right_queue) {
+	if(left_queue.size() != right_queue.size() ) {
+		return false;
+	}
+	for(int i = 0; i < left_side.size(); i++) {
+		if(*(left_side._data+i) != *(right_side._data+i)) {
+			return false;
+		}
+	}
+	return true;
+}
+*/
