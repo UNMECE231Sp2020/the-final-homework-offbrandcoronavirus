@@ -15,58 +15,36 @@ class Queue {
 
 		//Copy constructor
 		Queue(const List<Q> &q){
-				if(q.size() == 0) {
-						_size = 0;
-						_data = nullptr;
-				}
-				else {
-					int q_size = q.size();
-					List<Q> *q_values_copy = new List<Q>[q_size];
-					int i;
-					for(i=0; i<q_size; i++) {
-							*(q_values_copy+i) = *(q._data+i);
-					}
-					
-					if(q_size == 1) {
-							_data = new List<Q>(*q_values_copy);
-					}
-					else {
-						_data = new List<Q>[q_size];
-						for(i=0; i<q_size; i++) {
-								*(_data+i) = *(q_values_copy+i);
-						}
-					}
-						_size = q_size;
-						delete [] q_values_copy;
-				}
+			_data = q._data;
+			_size = q.size();
 		}
-
 		//Getters
 		size_t size() const {
 			return _size;	
 		}
 
 		Q front() const {
-			return *_data;
+			return _data.front();
 		}
 
 		Q back() const {
-			return *(_data + size() - 1);
+			return  _data.back();
 		}
 
 		//Push to queue
 		void enqueue(Q value) {
 				_data.push_front(value);
-				_size = _data._size();
+				_size = _data.size();
 		}
 
 		//Pop from queue
 		void dequeue() {
 				_data.pop_back();
+				_size = _data.size();
 		}
 
 		void print() {
-			std::cout << *this << std::endl;
+			_data.print();
 		}
 
 		bool search(Q value) {
@@ -98,7 +76,7 @@ class Queue {
 		friend bool operator!=(const Queue<U> &left_queue, 
 				const Queue<U> &right_queue);
 };
-/*
+
 template <class U>
 std::ostream &operator<<(std::ostream &out, const Queue<U> &q) {
 	out << queue._data;
@@ -109,11 +87,23 @@ bool operator==(const Queue<U> &left_queue, const Queue<U> &right_queue) {
 	if(left_queue.size() != right_queue.size() ) {
 		return false;
 	}
-	for(int i = 0; i < left_side.size(); i++) {
-		if(*(left_side._data+i) != *(right_side._data+i)) {
+	for(int i = 0; i < left_queue.size(); i++) {
+		if(*(left_queue._data+i) != *(right_queue._data+i)) {
 			return false;
 		}
 	}
 	return true;
 }
-*/
+
+template <class U>
+bool operator==(const Queue<U> &left_queue, const Queue<U> &right_queue) {
+	if(left_queue.size() == right_queue.size() ) {
+		return false;
+	}
+	for(int i = 0; i < left_queue.size(); i++) {
+		if( *(left_queue._data+i) == *(right_queue._data+i)) {
+			return false;
+		}
+	}
+	return true;
+}

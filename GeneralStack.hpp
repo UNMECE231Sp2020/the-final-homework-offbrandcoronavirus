@@ -16,12 +16,12 @@ class Stack {
 		//Default copy constructor
 		Stack(const Stack &stack) {
 			_data = stack._data;
-			_size = stack._size;
+			_size = stack.size();
 		}
 
 		//Getters
 		T top() const {
-			return _data.front;	
+			return _data.front();	
 		}
 
 		size_t size() const {
@@ -31,10 +31,12 @@ class Stack {
 		//Adding data to the data structure
 		void push(T value) {
 			_data.push_back(value);
+			_size = _data.size();
 		}
 		//Removing data from the data structure
 		void pop() {
 			_data.pop_back();
+			_size = _data.size();
 		}
 
 		bool search(T value) {
@@ -50,7 +52,7 @@ class Stack {
 		}
 
 		void print() {
-			std::cout << *this << std::endl;
+			_data.print();
 		}
 
 		//This overloaded operator is empty, please implement
@@ -74,7 +76,7 @@ std::ostream &operator<<(std::ostream &out, const Stack<S> &stack) {
 	out << stack._data;
 	return out;
 }
-/*
+
 template <class S>
 bool operator==(const Stack<S> &left_side, const Stack<S> &right_side) {
 	if(left_side.size() != right_side.size() ) {
@@ -89,6 +91,16 @@ bool operator==(const Stack<S> &left_side, const Stack<S> &right_side) {
 }
 template <class S>
 bool operator!=(const Stack<S> &left_side, const Stack<S> &right_side) { 
-	return !(left_side==right_side);
+	if(left_side.size() != right_side.size()) {
+			return true;
+	}
+	for(int i = 0; i < left_side.size(); i++) {
+		if( *(left_side._data+i) != *(right_side._data+i)) {
+				return true;
+		}
+	}
+	return false;
 }
-*/
+
+
+
