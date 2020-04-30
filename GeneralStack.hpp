@@ -45,13 +45,8 @@ class Stack {
 
 
 		bool empty() const {
-			//TODO: This is recurcive and is breaking your program.
-			if(empty()) 
-				return true;
-			else
-				return false;
+			return _data.empty();
 		}
-
 		void print() {
 			_data.print();
 		}

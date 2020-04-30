@@ -51,10 +51,7 @@ class Queue {
 		}
 
 		bool empty() const {
-			if(empty())
-				return true;
-			else
-				return false;
+			return _data.empty();
 		}
 
 		Queue<Q> operator=(const Queue<Q> q) {
