@@ -58,7 +58,7 @@ class List {
 		}
 		
 		List &operator=(const List &list) {
-			Dlist temp;
+			Dlist *temp;
 			_size = list._size;
 			temp = _front;
 			for(temp = list._front; temp != nullptr; temp = temp->next) {
@@ -79,7 +79,7 @@ class List {
 			}
 			else {
 				newNode->next=_front;
-				_front->back = newNode;
+				_front->prev = newNode;
 			}
 
 			_front=newNode;

@@ -10,7 +10,6 @@ class Queue {
 		//Default constructor
 		Queue() {
 				_size = 0;
-				_data = nullptr;
 		}
 
 		//Copy constructor
@@ -79,7 +78,7 @@ class Queue {
 
 template <class U>
 std::ostream &operator<<(std::ostream &out, const Queue<U> &q) {
-	out << queue._data;
+	out << q._data;
 	return out;
 }
 template <class U>		
@@ -96,7 +95,7 @@ bool operator==(const Queue<U> &left_queue, const Queue<U> &right_queue) {
 }
 
 template <class U>
-bool operator==(const Queue<U> &left_queue, const Queue<U> &right_queue) {
+bool operator!=(const Queue<U> &left_queue, const Queue<U> &right_queue) {
 	if(left_queue.size() == right_queue.size() ) {
 		return false;
 	}
