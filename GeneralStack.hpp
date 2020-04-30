@@ -45,6 +45,7 @@ class Stack {
 
 
 		bool empty() const {
+			//TODO: This is recurcive and is breaking your program.
 			if(empty()) 
 				return true;
 			else
